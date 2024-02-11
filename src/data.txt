@@ -1,0 +1,40 @@
+Parse this plain text google sheets document into JSON based on this example.
+
+```
+	Group 1: Lego Themed Time Capsule			
+Name	Sahib	Lena	Kyle	Sarvesh
+Club Location	40.716264289736515, -73.79830359709551	30.12065868214348, -95.27034210489754	40.71634458716664, -73.79830223558594	45.434515115698595, -76.03382191173824
+State/Provience	NY	TX	NY	Ontario Canada
+FileName	https://cloud-3hhaqc7br-hack-club-bot.vercel.app/0_bmt4286.jpg	https://cloud-3hhaqc7br-hack-club-bot.vercel.app/1_bmt4293.jpg	https://cloud-3hhaqc7br-hack-club-bot.vercel.app/2_bmt4300.jpg	https://cloud-3hhaqc7br-hack-club-bot.vercel.app/3_bmt4309.jpg
+```
+
+turns into 
+
+```
+{
+    "id": 1,
+    "project": "Lego Themed Time Capsule",
+    "members": [
+        {
+            "name": "Sahib",
+            "portrait": "https://cloud-3hhaqc7br-hack-club-bot.vercel.app/0_bmt4286.jpg",
+            "location": "40.716264289736515, -73.79830359709551"
+        },
+        
+        ...
+
+        ...
+
+        ...
+
+        {
+            "name": "Sarvesh",
+            "portrait": "https://cloud-3hhaqc7br-hack-club-bot.vercel.app/3_bmt4309.jpg",
+            "location": "45.434515115698595, -76.03382191173824"
+        },
+
+    ]
+}
+```
+
+Say OK then await for a data payload to convert to JSON, then output the formatted JSON
