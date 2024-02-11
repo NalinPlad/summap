@@ -43,13 +43,20 @@
 			popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
 		}),
 		zIndexOffset: 2000
-	}).bindPopup("<b>SUMMIT 📍 The Lighthouse</b>").addTo(mymap).openPopup();
+	}).bindPopup(`<b>SUMMIT 📍 The Lighthouse</b><p>Welcome to Summit Map <i>(Summap)</i>! This is a project by event photographers <a href="">Ajith</a> and <a>Jack</a> to show to connections between leaders at <a href="https://summit.hackclub.com/">Summit 2024</a>. Click on a dot to see the leader and view a constellation of their group members!</p><h6>Report any errors to @notmysql on HC Slack. Thanks!</h6>`).addTo(mymap).openPopup();
 
 	
+	// function panToAjith() {
+	// 	mymap.panTo([37.90861218088131, -122.2952501515231]);
+	// }
+
+	// function panToJack() {
+	// 	mymap.panTo([37.75886297691146, -122.42541183911295]);
+	// }
 
 	// Pan to the marker and zoom into it
 	mymap.panTo([37.75886297691146, -122.42541183911295]);
-	mymap.setZoom(12);
+	// mymap.setZoom(12);
 	// }).addTo(mymap);
 
   	let hcIcon = L.icon({
@@ -97,7 +104,7 @@
 				let icon = hcIcon_small;
 
   				if(selected == 0 || selected == group.id) {
-  					console.log(`Drawing because ${group.id} == ${selected}	`);
+  					// console.log(`Drawing because ${group.id} == ${selected}	`);
   					groupPoints.push([lat,long])
 					icon = hcIcon;
   				}
