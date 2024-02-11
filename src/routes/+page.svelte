@@ -48,7 +48,7 @@
 				let long = parseFloat(split[1].slice(1));
 				groupPoints.push([lat,long])
 				L.marker([lat, long], {icon: hcIcon }).addTo(mymap)
-					.bindPopup(`<div style="display:flex; flex-direction: column;"><b style="font-size:15pt;margin-bottom: 10px;">${member.name}</b><img src="${member.portrait}" style="width: 200px; border-radius: 5px;"/></div>`);
+					.bindPopup(`<div style="display:flex; flex-direction: column;"><b style="font-size:15pt;margin-bottom: 5px;">${member.name}</b><b style="margin-bottom: 10px;">Project: ${group.project}</b><img src="${member.portrait}" style="width: 200px; border-radius: 5px;"/></div>`);
 			});
 
 			L.polyline(groupPoints, {
