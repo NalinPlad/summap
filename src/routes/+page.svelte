@@ -8,6 +8,7 @@
 
   import data from '$lib/data.json';
   import icon from '$lib/images/icon.png'
+  import bridge from '$lib/images/bridge.png'
 
 
   let el;
@@ -33,6 +34,18 @@
   		}).addTo(mymap);
 
 
+	// Add marker at 37.75886297691146, -122.42541183911295
+	L.marker([37.75886297691146, -122.42541183911295], {
+		icon: L.icon({
+			iconUrl: bridge,
+			iconSize:     [20, 20], // size of the icon
+			iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+			popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
+		}),
+		zIndexOffset: 2000
+	}).bindPopup("SUMMIT").addTo(mymap);
+	// }).addTo(mymap);
+
   	let hcIcon = L.icon({
   		iconUrl: icon,
   		// shadowUrl: 'leaf-shadow.png',
@@ -43,18 +56,31 @@
   		// shadowAnchor: [4, 62],  // the same for the shadow
   		popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
   	});
+	  let hcIcon_small = L.icon({
+  		iconUrl: icon,
+  		// shadowUrl: 'leaf-shadow.png',
+
+  		iconSize:     [10, 10], // size of the icon
+  		// shadowSize:   [50, 64], // size of the shadow
+  		iconAnchor:   [5, 5], // point of the icon which will correspond to marker's location
+  		// shadowAnchor: [4, 62],  // the same for the shadow
+  		popupAnchor:  [0, -5] // point from which the popup should open relative to the iconAnchor
+  	});
 
 
   	// console.log(data.length);
 
   	let colors = ["red", "yellow", "blue", "green", "orange", "pink"]
 
+	let old_selected = "";
+
 	  
   	function draw() {
 		let pLineGroup = L.layerGroup()
-		console.log(selected);
+		let pIconGroup = L.layerGroup()
+		// console.log(selected);
   		data.forEach(group => {
-			console.log(group);
+			// console.log(group);
   			let groupPoints = []
   			group.members.forEach(member => {
   				// console.log(member);
@@ -62,19 +88,32 @@
   				let lat = parseFloat(split[0]);
   				let long = parseFloat(split[1].slice(1));
 
+				let icon = hcIcon_small;
+
   				if(selected == 0 || selected == group.id) {
   					console.log(`Drawing because ${group.id} == ${selected}	`);
   					groupPoints.push([lat,long])
+					icon = hcIcon;
   				}
 
-  				let marker = L.marker([lat, long], {icon: hcIcon }).addTo(mymap)
-  				.bindPopup(`<div style="display:flex; flex-direction: column;"><b style="font-size:15pt;margin-bottom: 5px;">${member.name}</b><b style="margin-bottom: 10px;">Project: ${group.project}</b><img src="${member.portrait}" style="width: 200px; border-radius: 5px;"/></div>`)
-  				.on('click', _ => {
-  					selected = group.id;
-  					pLineGroup.remove();
-					// console.log(selected);
-  					draw();
-  				});
+				let marker = L.marker([lat, long], {icon: icon, zIndexOffset: selected == group.id ? 1000 : 0})
+				.bindPopup(`<div style="display:flex; flex-direction: column;"><b style="font-size:15pt;margin-bottom: 5px;">${member.name}</b><b style="margin-bottom: 10px;">Project: ${group.project}</b><img src="${member.portrait}" style="width: 200px; border-radius: 5px;"/></div>`)
+					.on('click', _ => {
+						selected = group.id;
+						old_selected = member.name+group.id;
+						pLineGroup.remove();
+						pIconGroup.remove();
+						// console.log(selected);
+						draw();
+				})
+				
+				// console.log(member.name, old_selected, member.name == old_selected);
+				pIconGroup.addLayer(marker).addTo(mymap);
+				if(member.name+group.id == old_selected) {
+					marker.openPopup();
+					// console.log("Opening popup");
+				}
+
   			});
 
   			pLineGroup.addLayer(L.polyline(groupPoints, {

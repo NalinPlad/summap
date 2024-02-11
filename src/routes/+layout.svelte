@@ -31,6 +31,8 @@
 		max-width: 64rem;
 		margin: 0 auto;
 		box-sizing: border-box;
+
+		background-color: rgb(252,237,161);
 	}
 
 	footer {
