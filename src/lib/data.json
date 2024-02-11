@@ -31,7 +31,7 @@
 },
 {
     "id": 2,
-    "project": "r/place",
+    "project": "Summit r/place",
     "members": [
         {
             "name": "Johnny",
@@ -61,12 +61,12 @@
 },
 {
     "id": 3,
-    "project": "iceBreakr",
+    "project": "iceBreakr ",
     "members": [
         {
             "name": "Cisco",
             "portrait": "https://cloud-ouv6ksvr3-hack-club-bot.vercel.app/0_bmt4374.jpg",
-            "location": "41.94082972837474, -111.730039799785",
+            "location": "39.047771940159066, -121.07533320655875",
             "state": "California"
         },
         {
@@ -91,17 +91,17 @@
 },
 {
     "id": 4,
-    "project": "Summap",
+    "project": "Summap (The site you are on right now!)",
     "members": [
         {
             "name": "Jack",
             "portrait": "https://cloud-l0fybu5ui-hack-club-bot.vercel.app/0_bmt4412.jpg",
-            "location": "37.90816008388442, -122.29506115634382"
+            "location": "37.90718710877007, -122.2944066027664"
         },
         {
             "name": "Ajith",
             "portrait": "https://cloud-l0fybu5ui-hack-club-bot.vercel.app/1_bmt4440.jpg",
-            "location": "37.90816008388442, -122.29506115634382"
+            "location": "37.90861218088131, -122.2952501515231"
         }
     ]
 },
@@ -212,7 +212,7 @@
 },
 {
     "id": 9,
-    "project": "TBD",
+    "project": "Learn That Name",
     "members": [
         {
             "name": "Yahya",

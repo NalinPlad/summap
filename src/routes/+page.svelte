@@ -81,7 +81,7 @@
   				// color: colors[Math.floor(Math.random() * colors.length)],
   				color: 'red',
   				weight: 3,
-  				opacity: 0.5,
+  				opacity: 0.8,
   				smoothFactor: 1
   			})).addTo(mymap);
 		});
