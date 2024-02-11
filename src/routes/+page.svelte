@@ -43,7 +43,7 @@
 			popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
 		}),
 		zIndexOffset: 2000
-	}).bindPopup(`<b>SUMMIT 📍 The Lighthouse</b><p>Welcome to Summit Map <i>(Summap)</i>! This is a project by event photographers <a href="https://instagram.com/notmysql">Ajith</a> and <a href="https://instagram.com/notmysql">Jack</a> to show to connections between leaders at <a href="https://summit.hackclub.com/">Summit 2024</a>. Click on a dot to see the leader and view a constellation of their group members!</p><h6>Report any errors to @notmysql on HC Slack. Thanks! Find the <i>hacked</i> source code <a href="https://github.com/NalinPlad/summap">here</a> (all photographs are property of Hack Club, shot by us)</h6>`).addTo(mymap).openPopup();
+	}).bindPopup(`<b>SUMMIT 📍 The Lighthouse</b><p>Welcome to Summit Map <i>(Summap)</i>! This is a project by event photographers <a href="https://instagram.com/notmysql">Ajith</a> and <a href="https://www.jackonealphoto.com/">Jack</a> to show to connections between leaders at <a href="https://summit.hackclub.com/">Summit 2024</a>. Click on a dot to see the leader and view a constellation of their group members!</p><h6>Report any errors to @notmysql on HC Slack. Thanks! Find the <i>hacked</i> source code <a href="https://github.com/NalinPlad/summap">here</a> (all photographs are property of Hack Club, shot by us)</h6>`).addTo(mymap).openPopup();
 
   
 	// function panToAjith() {
