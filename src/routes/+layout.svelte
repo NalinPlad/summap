@@ -20,6 +20,7 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		/* background-color: rgb(0,0,0); */
 	}
 
 	main {
@@ -32,7 +33,6 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 
-		background-color: rgb(252,237,161);
 	}
 
 	footer {

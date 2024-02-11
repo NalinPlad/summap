@@ -38,12 +38,18 @@
 	L.marker([37.75886297691146, -122.42541183911295], {
 		icon: L.icon({
 			iconUrl: bridge,
-			iconSize:     [20, 20], // size of the icon
-			iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
-			popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
+			iconSize:     [25, 25], // size of the icon
+			iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
+			popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
 		}),
 		zIndexOffset: 2000
-	}).bindPopup("SUMMIT").addTo(mymap);
+	}).bindPopup("<b>SUMMIT 📍 The Lighthouse</b>").addTo(mymap).openPopup();
+
+	
+
+	// Pan to the marker and zoom into it
+	mymap.panTo([37.75886297691146, -122.42541183911295]);
+	mymap.setZoom(12);
 	// }).addTo(mymap);
 
   	let hcIcon = L.icon({
