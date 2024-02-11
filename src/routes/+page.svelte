@@ -39,6 +39,8 @@
 		
 		// console.log(data.length);
 
+		let colors = ["red", "yellow", "blue", "green", "orange", "pink"]
+
 		data.forEach(group => {
 			let groupPoints = []
 			group.members.forEach(member => {
@@ -52,6 +54,7 @@
 			});
 
 			L.polyline(groupPoints, {
+				// color: colors[Math.floor(Math.random() * colors.length)],
 				color: 'red',
 				weight: 3,
 				opacity: 0.5,
