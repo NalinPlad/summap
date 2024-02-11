@@ -144,8 +144,8 @@
 </script>
 
 <svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Svelte demo app" />
+  <title>Summap | SUMMIT 2024</title>
+  <meta name="description" content="Summit Map = Summap" />
 </svelte:head>
 
 <section>
