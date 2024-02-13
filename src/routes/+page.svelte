@@ -4,7 +4,7 @@
   import welcome_fallback from '$lib/images/svelte-welcome.png';
 
   import { onMount } from 'svelte';
-  import * as d3 from 'd3';
+//   import * as d3 from 'd3';
 
   import data from '$lib/data.json';
   import icon from '$lib/images/icon.png'
@@ -19,7 +19,9 @@
 
   onMount(() => {
   	var mymap = L
-  		.map("map")
+  		.map("map", {
+			// zoomSnap: 0,
+		})
 		.on('click', _ => {
 			// selected = 0;
 			// draw();
@@ -30,8 +32,7 @@
   	L.tileLayer(
   		'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
-  		// maxZoom: 6,
-  		}).addTo(mymap);
+  	}).addTo(mymap);
 
 
 	// Add marker at 37.75886297691146, -122.42541183911295
@@ -55,7 +56,7 @@
 	// }
 
 	// Pan to the marker and zoom into it
-	mymap.panTo([37.75886297691146, -122.42541183911295]);
+	mymap.panTo([37.75886297691146, -100.42541183911295]);
 	// mymap.setZoom(12);
 	// }).addTo(mymap);
 
@@ -87,14 +88,31 @@
 
 	let old_selected = "";
 
-	  
-  	function draw() {
+	function solve_camera(group) {
+		let groupPoints = []
+		group.members.forEach(member => {
+			let split = member.location.split(',');
+			let lat = parseFloat(split[0]);
+			let long = parseFloat(split[1].slice(1));
+			groupPoints.push([lat,long])
+		});
+		let bounds = L.latLngBounds(groupPoints);
+		mymap.flyToBounds(bounds);
+	}
+	
+	
+	function draw() {
 		let pLineGroup = L.layerGroup()
 		let pIconGroup = L.layerGroup()
 		// console.log(selected);
-  		data.forEach(group => {
+		data.forEach(group => {
 			// console.log(group);
-  			let groupPoints = []
+			let groupPoints = []
+			// if selected group
+			if(selected == group.id) {
+				// console.log("Solving camera");
+				solve_camera(group);
+			}
   			group.members.forEach(member => {
   				// console.log(member);
   				let split = member.location.split(',');
@@ -110,7 +128,7 @@
   				}
 
 				let marker = L.marker([lat, long], {icon: icon, zIndexOffset: selected == group.id ? 1000 : 0})
-				.bindPopup(`<div style="display:flex; flex-direction: column;"><b style="font-size:15pt;margin-bottom: 5px;">${member.name}</b><b style="margin-bottom: 10px;">Project: ${group.project}</b><img src="${member.portrait}" style="width: 200px; border-radius: 5px;"/></div>`)
+				.bindPopup(`<div style="display:flex; flex-direction: column;"><b style="font-size:15pt;margin-bottom: 10px;">${member.name}</b><p style="margin-bottom: 10px; margin-top:0; max-width: 175px;"><b>Project:</b> ${group.project}</p><img src="${member.portrait}" style="width: 175px; border-radius: 5px;"/></div>`)
 					.on('click', _ => {
 						selected = group.id;
 						old_selected = member.name+group.id;
@@ -122,8 +140,10 @@
 				
 				// console.log(member.name, old_selected, member.name == old_selected);
 				pIconGroup.addLayer(marker).addTo(mymap);
-				if(member.name+group.id == old_selected) {
+				if(old_selected == member.name+group.id) {
+					// console.log(member.name, old_selected, member.name+group.id == old_selected);
 					marker.openPopup();
+					mymap.panTo([lat, long]);
 					// console.log("Opening popup");
 				}
 
@@ -136,6 +156,7 @@
   				opacity: 0.8,
   				smoothFactor: 1
   			})).addTo(mymap);
+
 		});
   	}
 
@@ -163,5 +184,11 @@
     height: 100vh;
     max-width: 100%;
     max-height: 100%;
+  }
+
+  .card {
+	/*
+	
+	*/
   }
 </style>
